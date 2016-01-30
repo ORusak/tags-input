@@ -1,0 +1,32 @@
+{
+  "name": "tag-input",
+  "version": "0.1.0",
+  "description": "Tag input vanilla js plugin",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ORusak/Tags-Input-Plugin.git"
+  },
+  "keywords": [
+    "plugin",
+    "vanilla",
+    "javascript",
+    "tag",
+    "input"
+  ],
+  "author": "Oleg Rusak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ORusak/Tags-Input-Plugin/issues"
+  },
+  "homepage": "https://github.com/ORusak/Tags-Input-Plugin#readme",
+  "devDependencies": {
+    "list-of-programming-languages": "^1.1.1"
+  }
+}

@@ -1,0 +1,26 @@
+div.tag {
+    border: solid 1px lightgray;
+    display: inherit;
+    margin: 2px 2px;
+    padding: 7px 7px;
+}
+
+input.handler-tag {
+    margin: 2px 2px;
+    padding: 5px 5px;
+    border: none;
+    outline: none;
+}
+
+span.post-tag {
+    border: solid 1px lightgray;
+    margin: 2px 2px;
+    padding: 5px 5px;
+    display: inline-block;
+}
+
+span.delete-tag {
+    padding: 2px 2px;
+    cursor: hand;
+}
+

@@ -1,0 +1,28 @@
+{
+  "name": "tag-input",
+  "description": "Tag input vanilla js plugin",
+  "main": "app.js",
+  "authors": [
+    "Oleg Rusak"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "plugin",
+    "vanilla",
+    "javascript",
+    "tag",
+    "input"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "dependencies": {
+    "javascript-auto-complete": "master"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
