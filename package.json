@@ -1,8 +1,8 @@
 {
-  "name": "tag-input",
+  "name": "tags-input",
   "version": "0.1.0",
   "description": "Tag input vanilla js plugin",
-  "main": "app.js",
+  "main": "app/tags.js",
   "directories": {
     "test": "test"
   },
@@ -27,6 +27,9 @@
   },
   "homepage": "https://github.com/ORusak/Tags-Input-Plugin#readme",
   "devDependencies": {
-    "list-of-programming-languages": "^1.1.1"
+    "jsdoc": "^3.4.0",
+    "jsdoc-to-markdown": "^1.0.3",
+    "list-of-programming-languages": "^1.1.1",
+    "mocha": "latest"
   }
 }
