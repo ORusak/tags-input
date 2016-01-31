@@ -24,7 +24,17 @@
 
 
     //todo: сохранять одинаковую последовательность тегов в инпут и визуализации
+    /**
+     * @exports tags-input
+     * */
     class pTags {
+        /**
+         * tags input plugin
+         * @constructor
+         * @param {object} options - plugin settings
+         * @author Oleg Rusak
+         * @throws Not support. Required support querySelector and addEventListener!
+         */
         constructor (options){
             if (!support){
                 throw new Error("Not support. Required support querySelector and addEventListener!");
@@ -43,9 +53,10 @@
             this.initHandler();
         }
 
-        /*
-        * @private
-        * */
+        /**
+         * init handlers event tags input element
+         * @private
+         */
         initHandler (){
             // Listen write tags
             let ctx             =   this;
@@ -113,9 +124,15 @@
             handlerInput.addEventListener('blur', handlerFocusTag);
         }
 
-        /* addTagsFromString
+        /**
+         * add tags from string
          * @private
-         * */
+         * @param {string} str - name tags throw separate symbol
+         * @return {Object[]} listTag = list object add DOM elements tags plugin
+         * @example
+         * // returns [{tag1}, {tag2}]
+         * pTag.addTagsFromString("tag1 tag2 tag1");
+         */
         addTagsFromString (str){
             let tagsList    =   str.split(/[\s+;\t]/);
             let listTag     =   [];
@@ -129,9 +146,10 @@
             return listTag;
         }
 
-        /*
+        /**
+         * create tag DOM element on select base input DOM element
          * @private
-         * */
+         */
         createTagElement  () {
             let elem    =   document.querySelector(this.settings.selector);
 
@@ -150,15 +168,15 @@
             this.originalInput       =   elem;
             this.handlerInput        =   tagsContainer.children[0];
             this.contaner            =   tagsContainer;
-
-            return elem;
         }
 
-        /*
+        /**
+         * add new unique tag by name
          * @public
-         * @param name
-         * @return tag object
-         * */
+         * @param {string} name - name new tag
+         * @return {Object} tag - object add new DOM element tag
+         * @return {null} tag - name is empty or not unique
+         */
         addTag (name){
             if (name==='' || this.returnIndexTag(name)!=-1){
                 return null;
@@ -174,7 +192,7 @@
             },false);
 
             tag.lastChild.addEventListener('click',function (event) {
-                ctx.removeTag(this.parentNode);
+                ctx.removeByObject(this.parentNode);
 
                 event.stopPropagation();
             },false);
@@ -187,20 +205,39 @@
             return tag;
         }
 
-        /* removeTag
+        /**
+         * remove tag by name
          * @public
+         * @param {string} - name tag
+         * @return {boolean} operation successful. False - name not exist in tag storage. True - remove all.
+         */
+        remove(name){
+            let tag;
+            for (tag of this.contaner){
+                if (name==tag.textContent) break;
+            }
+
+            if(!tag)
+                return false;
+
+            return this.removeByObject (tag);
+        }
+
+        /**
+         * remove tag object
+         * @private
          * @param tag object
-         * @return operation successful
-         * */
-        removeTag (tag){
+         * @return {boolean} operation successful. Tag - remove always. False - name not exist in tag storage. True - remove all.
+         */
+        removeByObject(tag) {
             let tagName     =   tag.textContent;
 
             let indexTag    =   this.returnIndexTag(tagName);
+            this.contaner.removeChild(tag);
+
             if (indexTag==-1){
                 return false;
             }
-
-            this.contaner.removeChild(tag);
 
             let tags        =   this.originalInput.value;
             let tagsArray   =   tags.split(';');
@@ -210,11 +247,12 @@
             return true;
         }
 
-        /* existTag
+        /**
+         * return index tag by name in storage
          * @public
-         * @param name
-         * @return index
-         * */
+         * @param {string} name - name tag
+         * @return {Number} index. -1 - not found. Number - index base 0.
+         */
         returnIndexTag (name){
             let tags        =   this.originalInput.value;
             let tagsArray   =   tags.split(';');
@@ -222,12 +260,12 @@
             return tagsArray.indexOf(name);
         }
 
-        /*
-         * editTag
-         * @public
-         * @param name
-         * @return index
-         * */
+        /**
+         *
+         * edit tag element
+         * @private
+         * @param {Object} tag
+         */
         editTag (tag) {
             let tagName = tag.textContent;
             let tagWidth = tag.clientWidth;
@@ -237,22 +275,23 @@
             this.handlerInput.style.width = tagWidth + 'px';
             this.handlerInput.focus();
 
-            if (this.removeTag(tag)) return;
-
-            //Битый тэг
-            this.contaner.removeChild(tag);
+            this.removeByObject(tag);
         }
 
-        /*
+        /**
+         * get value tags
          * @public
-         * */
+         * @return {string} - name tags through separate symbol
+         */
         get value (){
             return this.originalInput.value;
         }
 
-        /*
+        /**
+         * set value tags
+         * @param {string} str - name tags through separate symbol
          * @public
-         * */
+         */
         set value (str){
             this.addTagsFromString(str);
         }
