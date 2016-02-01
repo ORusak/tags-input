@@ -1,6 +1,6 @@
 {
   "name": "tags-input",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tag input vanilla js plugin",
   "main": "app/tags.js",
   "directories": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ORusak/Tags-Input-Plugin.git"
+    "url": "git+https://github.com/ORusak/tags-input.git"
   },
   "keywords": [
     "plugin",
@@ -23,13 +23,17 @@
   "author": "Oleg Rusak",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ORusak/Tags-Input-Plugin/issues"
+    "url": "https://github.com/ORusak/tags-input/issues"
   },
-  "homepage": "https://github.com/ORusak/Tags-Input-Plugin#readme",
+  "homepage": "https://github.com/ORusak/tags-input",
+  "dependencies": {
+    "javascript-auto-complete": "https://github.com/ORusak/JavaScript-autoComplete"
+  },
   "devDependencies": {
     "jsdoc": "^3.4.0",
     "jsdoc-to-markdown": "^1.0.3",
-    "list-of-programming-languages": "^1.1.1",
-    "mocha": "latest"
+    "mocha": "latest",
+    "mocha-jsdom": "latest",
+    "should": "latest"
   }
 }

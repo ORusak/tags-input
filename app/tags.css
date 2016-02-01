@@ -1,26 +1,29 @@
 div.tag {
-    border: solid 1px lightgray;
-    display: inherit;
+    display: inline-block;
     margin: 2px 2px;
-    padding: 7px 7px;
+    padding: 4px 4px;
+}
+
+div.tag span {
+    vertical-align: middle;
 }
 
 input.handler-tag {
     margin: 2px 2px;
-    padding: 5px 5px;
     border: none;
+    padding: 7px 0;
     outline: none;
 }
 
 span.post-tag {
-    border: solid 1px lightgray;
     margin: 2px 2px;
-    padding: 5px 5px;
     display: inline-block;
 }
 
 span.delete-tag {
-    padding: 2px 2px;
-    cursor: hand;
+    display: inline-block;
 }
 
+span.name-tag {
+    display: inline-block;
+}

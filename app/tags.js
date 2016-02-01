@@ -5,7 +5,7 @@
 
 (function (root, factory){
     if ( typeof exports === 'object' ) {
-        throw new Error ("Not support");
+        module.exports = factory();
     } else {
         root.pTags   =   factory(root);
     }
@@ -18,7 +18,8 @@
     //
     let support     =   !!document.querySelector && !!document.addEventListener;
     let defaults    =   {
-        initClass   : 'p-tag'
+        initClass   : 'p-tag',
+        handlerInputWidth: '15em'
     };
 
 
@@ -26,13 +27,13 @@
     //todo: сохранять одинаковую последовательность тегов в инпут и визуализации
     /**
      * @exports tags-input
+     * @author Oleg Rusak
      * */
     class pTags {
         /**
          * tags input plugin
          * @constructor
          * @param {object} options - plugin settings
-         * @author Oleg Rusak
          * @throws Not support. Required support querySelector and addEventListener!
          */
         constructor (options){
@@ -45,10 +46,6 @@
 
             //Init element
             this.createTagElement();
-
-            this.addTag('java');
-            this.addTag('java-script');
-            //this.addTag('very-very-very-long-tag!!!!!');
 
             this.initHandler();
         }
@@ -100,7 +97,7 @@
 
             function handlerWriteTag(event) {
                 let value       =   event.target.value;
-                let tagsList    =   value.split(/[\s+;\t]/);
+                let tagsList    =   value.split(/[\s;\t\,]/);
                 if(tagsList.length<2) return false;
 
                 let listTag     =   ctx.addTagsFromString(value);
@@ -125,6 +122,42 @@
         }
 
         /**
+         * add new unique tag by name
+         * @public
+         * @param {string} name - name new tag
+         * @return {Object} tag - object add new DOM element tag
+         * @return {null} tag - name is empty or not unique
+         */
+        addTag (name){
+            if (name==='' || this.returnIndexTag(name)!=-1){
+                return null;
+            }
+
+            let tag         =   document.createElement('span');
+            tag.className   =   'post-tag';
+            tag.innerHTML   =   `<span class="name-tag">${name}</span><span class="delete-tag">&nbsp;<div id="cross"></div><div></div></span>`;
+
+            let ctx         = this;
+            tag.addEventListener('click',function () {
+                ctx.editTag(this);
+            },false);
+
+            tag.lastChild.addEventListener('click',function (event) {
+                ctx.removeByObject(this.parentNode);
+
+                event.stopPropagation();
+            },false);
+
+            let parent                      =   this.contaner;
+            this.handlerInput.style.width   =   this.settings.handlerInputWidth;
+            parent.insertBefore(tag, this.handlerInput);
+
+            this.originalInput.value += (this.originalInput.value ? ';' : '') + name;
+
+            return tag;
+        }
+
+        /**
          * add tags from string
          * @private
          * @param {string} str - name tags throw separate symbol
@@ -134,7 +167,7 @@
          * pTag.addTagsFromString("tag1 tag2 tag1");
          */
         addTagsFromString (str){
-            let tagsList    =   str.split(/[\s+;\t]/);
+            let tagsList    =   str.split(/[\s;\t\,]/);
             let listTag     =   [];
 
             for(let name of tagsList){
@@ -171,41 +204,6 @@
         }
 
         /**
-         * add new unique tag by name
-         * @public
-         * @param {string} name - name new tag
-         * @return {Object} tag - object add new DOM element tag
-         * @return {null} tag - name is empty or not unique
-         */
-        addTag (name){
-            if (name==='' || this.returnIndexTag(name)!=-1){
-                return null;
-            }
-
-            let tag         =   document.createElement('span');
-            tag.className   =   'post-tag';
-            tag.innerHTML   =   name + '<span class="delete-tag"><i class="fa fa-times-circle"></i></span>';
-
-            let ctx         = this;
-            tag.addEventListener('click',function () {
-                ctx.editTag(this);
-            },false);
-
-            tag.lastChild.addEventListener('click',function (event) {
-                ctx.removeByObject(this.parentNode);
-
-                event.stopPropagation();
-            },false);
-
-            let parent      =   this.contaner;
-            parent.insertBefore(tag, this.handlerInput);
-
-            this.originalInput.value += (this.originalInput.value ? ';' : '') + name;
-
-            return tag;
-        }
-
-        /**
          * remove tag by name
          * @public
          * @param {string} - name tag
@@ -214,7 +212,7 @@
         remove(name){
             let tag;
             for (tag of this.contaner){
-                if (name==tag.textContent) break;
+                if (name==tag.firstChild.textContent) break;
             }
 
             if(!tag)
@@ -230,7 +228,7 @@
          * @return {boolean} operation successful. Tag - remove always. False - name not exist in tag storage. True - remove all.
          */
         removeByObject(tag) {
-            let tagName     =   tag.textContent;
+            let tagName     =   tag.firstChild.textContent;
 
             let indexTag    =   this.returnIndexTag(tagName);
             this.contaner.removeChild(tag);
@@ -261,13 +259,20 @@
         }
 
         /**
-         *
+         * focus cursor tags input element
+         * @public
+         */
+        focus () {
+            this.handlerInput.focus();
+        }
+
+        /**
          * edit tag element
          * @private
          * @param {Object} tag
          */
         editTag (tag) {
-            let tagName = tag.textContent;
+            let tagName = tag.firstChild.textContent;
             let tagWidth = tag.clientWidth;
 
             this.contaner.insertBefore(this.handlerInput, tag);
@@ -277,6 +282,8 @@
 
             this.removeByObject(tag);
         }
+
+
 
         /**
          * get value tags

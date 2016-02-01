@@ -24,33 +24,27 @@
         let pTag    =   new pTags({
             selector: "input.tags-element"
         });
+        pTag.value  =   'CSS,HTML';
+        pTag.focus();
 
         //Show inner tag value
-        let tagInput        =   document.querySelector('.tags-element');
         let tagOutput       =   document.querySelector('.tags-output');
-        let handlerInput    =   document.querySelector('.tag input');
-        handlerInput.focus();
 
         setInterval(function (){
-            tagOutput.textContent   =   tagInput.value;
+            tagOutput.textContent   =   pTag.value;
 
         }, 1000);
 
-        //Init autocomplite
-        let lang;
-        let indexLang   =   [];
-        fetch('node_modules/list-of-programming-languages/data/data.jsonld')
-            .then(function(response) {
-                return response.json();
-            }).then(function(data) {
-                lang    =   data.itemListElement;
-
-                lang.forEach(function(item) {
-                    let data    =   item.item;
-                    indexLang.push(data.name.replace(/\s/g, '_'));
-                });
-            })
-            .catch( alert );
+        let indexLang   =  [
+                'Assembler',
+                'Go',
+                'Java',
+                'JavaScript',
+                'Python',
+                'C++',
+                'CSS',
+                'HTML'
+            ];
 
         var my_autoComplete = new autoComplete({
             selector: 'input.handler-tag',
