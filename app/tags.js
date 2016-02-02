@@ -1,7 +1,11 @@
 /**
  * Created by Rusak Oleg on 23.01.2016.
- * Tags
+ * Tags Input
  */
+
+//todo: gulp задачу для генерации readme, минификации файлов
+
+//todo: добавить стили к автокомплиту
 
 (function (root, factory){
     if ( typeof exports === 'object' ) {
@@ -21,8 +25,6 @@
         initClass   : 'p-tag',
         handlerInputWidth: '15em'
     };
-
-
 
     //todo: сохранять одинаковую последовательность тегов в инпут и визуализации
     /**

@@ -29,6 +29,7 @@ Vanilla JS плагин для добавления input элементу фу�
 
 - Not support. Required support querySelector and addEventListener!
 
+**Author:** Oleg Rusak  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -41,6 +42,7 @@ Vanilla JS плагин для добавления input элементу фу�
     * [.addTag(name)](#module_tags-input+addTag) ⇒ <code>Object</code> &#124; <code>null</code>
     * [.remove(name)](#module_tags-input+remove) ⇒ <code>boolean</code>
     * [.returnIndexTag(name)](#module_tags-input+returnIndexTag) ⇒ <code>Number</code>
+    * [.focus()](#module_tags-input+focus)
 
 <a name="module_tags-input+value"></a>
 ### tags-input.value ⇒ <code>string</code>
@@ -96,3 +98,9 @@ return index tag by name in storage
 | --- | --- | --- |
 | name | <code>string</code> | name tag |
 
+<a name="module_tags-input+focus"></a>
+### tags-input.focus()
+focus cursor tags input element
+
+**Kind**: instance method of <code>[tags-input](#module_tags-input)</code>  
+**Access:** public  

@@ -34,6 +34,11 @@
     "jsdoc-to-markdown": "^1.0.3",
     "mocha": "latest",
     "mocha-jsdom": "latest",
-    "should": "latest"
+    "should": "latest",
+    "gulp": "latest",
+    "gulp-util": "latest",
+    "gulp-rename": "latest",
+    "gulp-concat": "latest",
+    "gulp-jsdoc-to-markdown": "latest"
   }
 }
