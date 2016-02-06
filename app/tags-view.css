@@ -3,6 +3,7 @@ div.tag {
     border-radius: 3px;
     font-family: Tahoma;
     width: 100%;
+    text-transform: lowercase;
 }
 
 input.handler-tag {
@@ -13,7 +14,6 @@ input.handler-tag {
 span.post-tag {
     border: solid 1px #E5CE8B;
     border-radius: 5px;
-    text-transform: lowercase;
 }
 
 span.post-tag span{
