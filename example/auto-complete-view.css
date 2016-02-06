@@ -1,10 +1,11 @@
 .autocomplete-suggestions {
-    border: solid 1px rgb(229, 206, 139);
+    border: solid 1px #E5CE8B;
     border-radius: 3px;
     font-family: Tahoma;
 }
 .autocomplete-suggestion {
-    border: solid 1px rgb(229, 206, 139);
+    border: solid 1px #E5CE8B;
+    text-transform: lowercase;
 }
 
 .autocomplete-suggestion b {
