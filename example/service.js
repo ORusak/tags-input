@@ -48,6 +48,7 @@
 
         var my_autoComplete = new autoComplete({
             selector: 'input.handler-tag',
+            archor: '.tag',
             minChars: 2,
             cache: false,
             source: function(term, suggest){
