@@ -51,7 +51,7 @@ var autoComplete = (function(){
 
         for (var i=0; i<elems.length; i++) {
             var that = elems[i];
-            var thatArchor = thatArchor ? elemsArchor[i]:that;
+            var thatArchor = elemsArchor[i] ? elemsArchor[i]:that;
 
             // create suggestions container "sc"
             that.sc = document.createElement('div');
