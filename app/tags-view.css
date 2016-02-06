@@ -2,15 +2,17 @@ div.tag {
     border: solid 1px rgb(226, 226, 226);
     border-radius: 3px;
     font-family: Tahoma;
+    width: 100%;
 }
 
 input.handler-tag {
-
+    font-size: inherit;
 }
 
 span.post-tag {
-    border: solid 1px rgb(229, 206, 139);
+    border: solid 1px #E5CE8B;
     border-radius: 5px;
+    text-transform: lowercase;
 }
 
 span.post-tag span{
@@ -18,8 +20,8 @@ span.post-tag span{
 }
 
 span.delete-tag {
-    background-color: rgb(237, 217, 164);
-    border-left: solid 1px rgb(229, 206, 139);
+    background-color: #EDD9A4;
+    border-left: solid 1px #E5CE8B;
     border-radius: 0 4px 4px 0;
 
     position: relative;
@@ -27,7 +29,7 @@ span.delete-tag {
 }
 
 span.name-tag {
-    background-color: rgb(250, 243, 217);
+    background-color: #FAF3D9;
     border-radius: 4px 0 0 4px;
     cursor: text;
 }
@@ -43,6 +45,7 @@ span.name-tag {
     left: 9px;
     top: 7px;
 
+    transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
