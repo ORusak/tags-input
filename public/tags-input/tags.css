@@ -1,0 +1,23 @@
+div.tag {
+  display: inline-block;
+  margin: 2px 2px;
+  padding: 4px 4px;
+}
+div.tag span {
+  vertical-align: middle;
+}
+input.handler-tag {
+  margin: 2px 2px;
+  border: none;
+  outline: none;
+}
+span.post-tag {
+  margin: 2px 2px;
+  display: inline-block;
+}
+span.delete-tag {
+  display: inline-block;
+}
+span.name-tag {
+  display: inline-block;
+}

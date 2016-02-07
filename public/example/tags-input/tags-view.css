@@ -1,0 +1,54 @@
+div.tag {
+  border: solid 1px #e2e2e2;
+  border-radius: 3px;
+  font-family: Tahoma;
+  width: 100%;
+  text-transform: lowercase;
+}
+input.handler-tag {
+  font-size: inherit;
+  padding: 3px 0;
+}
+span.post-tag {
+  border: solid 1px #e5ce8b;
+  border-radius: 5px;
+}
+span.post-tag span {
+  padding: 2px 8px;
+}
+span.delete-tag {
+  background-color: #edd9a4;
+  border-left: solid 1px #e5ce8b;
+  border-radius: 0 4px 4px 0;
+  position: relative;
+  cursor: pointer;
+}
+span.name-tag {
+  background-color: #faf3d9;
+  border-radius: 4px 0 0 4px;
+  cursor: text;
+}
+#cross {
+  background: #fff;
+  height: 10px;
+  position: absolute;
+  width: 2px;
+  cursor: pointer;
+  left: 9px;
+  top: 7px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
+#cross:after {
+  background: #fff;
+  content: "";
+  height: 2px;
+  position: absolute;
+  cursor: pointer;
+  left: -4px;
+  top: 4px;
+  width: 10px;
+}

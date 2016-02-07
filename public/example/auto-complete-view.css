@@ -1,0 +1,13 @@
+.autocomplete-suggestions {
+  border: solid 1px #e5ce8b;
+  border-radius: 3px;
+  font-family: Tahoma;
+}
+.autocomplete-suggestion {
+  border: solid 1px #e5ce8b;
+  text-transform: lowercase;
+}
+.autocomplete-suggestion b {
+  font-weight: bold;
+  color: inherit;
+}
