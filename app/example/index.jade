@@ -1,0 +1,25 @@
+//
+   Created by Oleg Rusak on 07.02.2016.
+
+html
+    head
+        meta(charset='utf-8')
+        title Example use plugin tags input
+
+        link(rel="stylesheet" href="style.css")
+        link(rel="stylesheet" href="tags-input/tags.css")
+        link(rel="stylesheet" href="tags-input/tags-view.css")
+        link(rel="stylesheet" href="javascript-auto-complete/auto-complete.css")
+        link(rel="stylesheet" href="auto-complete-view.css")
+    body
+        .form
+            .item
+                .label
+                    label Метки:
+                .edit-element
+                    input.tags-element(type="text" placeholder="Add tags")
+            .tags-output
+
+        script(src="javascript-auto-complete/auto-complete.js")
+        script(src="tags-input/tags.min.js")
+        script(src="service.min.js")

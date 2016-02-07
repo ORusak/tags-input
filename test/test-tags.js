@@ -14,7 +14,7 @@ describe('class tags-input', function() {
     jsdom();
 
     before(function () {
-        tagsInput           =   require('../app/tags.js');
+        tagsInput           =   require('../app/tags-input/tags.js');
 
         let input           =   document.createElement('input');
         input.className     =   'tags-element';

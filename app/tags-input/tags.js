@@ -3,18 +3,7 @@
  * Tags Input
  */
 
-//todo: gulp задачу для минификации файлов
-
-//todo: добавить стили к автокомплиту
-
-(function (root, factory){
-    if ( typeof exports === 'object' ) {
-        module.exports = factory();
-    } else {
-        root.pTags   =   factory(root);
-    }
-
-})(typeof global !== "undefined" ? global : this.window || this.global, function (){
+var pTags   =   (function (){
     'use strict';
 
     //
@@ -137,7 +126,7 @@
 
             let tag         =   document.createElement('span');
             tag.className   =   'post-tag';
-            tag.innerHTML   =   `<span class="name-tag">${name}</span><span class="delete-tag">&nbsp;<div id="cross"></div><div></div></span>`;
+            tag.insertAdjacentHTML('afterBegin', `<span class="name-tag">${name}</span><span class="delete-tag">&nbsp;<div id="cross"></div><div></div></span>`);
 
             let ctx         = this;
             tag.addEventListener('click',function () {
@@ -195,7 +184,7 @@
 
             let tagsContainer        =   document.createElement('div');
             tagsContainer.className  =   'tag';
-            tagsContainer.innerHTML  =   '<input type="text" class="handler-tag">';
+            tagsContainer.insertAdjacentHTML('afterBegin', '<input type="text" class="handler-tag">');
 
             let parent               =   elem.parentNode;
             parent.insertBefore(tagsContainer, elem);
@@ -307,4 +296,12 @@
     }
 
     return pTags;
-});
+})();
+
+(function (){
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = pTags;
+    } else {
+        window.pTags   = pTags;
+    }
+})();
