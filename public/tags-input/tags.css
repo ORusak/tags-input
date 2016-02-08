@@ -10,6 +10,7 @@ input.handler-tag {
   margin: 2px 2px;
   border: none;
   outline: none;
+  vertical-align: middle;
 }
 span.post-tag {
   margin: 2px 2px;

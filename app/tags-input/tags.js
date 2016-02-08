@@ -186,6 +186,11 @@ var pTags   =   (function (){
             tagsContainer.className  =   'tag';
             tagsContainer.insertAdjacentHTML('afterBegin', '<input type="text" class="handler-tag">');
 
+            let ctx =   this;
+            tagsContainer.addEventListener('click',function (event) {
+                ctx.handlerInput.focus();
+            },false);
+
             let parent               =   elem.parentNode;
             parent.insertBefore(tagsContainer, elem);
 
@@ -243,10 +248,12 @@ var pTags   =   (function (){
          * @return {Number} index. -1 - not found. Number - index base 0.
          */
         returnIndexTag (name){
-            let tags        =   this.originalInput.value;
-            let tagsArray   =   tags.split(';');
+            if (!name) return -1;
 
-            return tagsArray.indexOf(name);
+            let tags        =   this.originalInput.value;
+            let tagsArray   =   tags.toLowerCase().split(';');
+
+            return tagsArray.indexOf(name.toLowerCase());
         }
 
         /**
@@ -265,6 +272,9 @@ var pTags   =   (function (){
         editTag (tag) {
             let tagName = tag.firstChild.textContent;
             let tagWidth = tag.clientWidth;
+
+            //https://bugzilla.mozilla.org/show_bug.cgi?id=687787
+            this.handlerInput.blur();
 
             this.contaner.insertBefore(this.handlerInput, tag);
             this.handlerInput.value = tagName;
