@@ -45,7 +45,7 @@ var pTags   =   (function (){
          * init handlers event tags input element
          * @private
          */
-        initHandler (){
+        private initHandler (){
             // Listen write tags
             let ctx             =   this;
             let handlerInput    =   this.handlerInput;
@@ -119,7 +119,7 @@ var pTags   =   (function (){
          * @return {Object} tag - object add new DOM element tag
          * @return {null} tag - name is empty or not unique
          */
-        addTag (name){
+        public addTag (name){
             if (name==='' || this.returnIndexTag(name)!=-1){
                 return null;
             }
@@ -150,14 +150,14 @@ var pTags   =   (function (){
 
         /**
          * add tags from string
-         * @private
+         * @public
          * @param {string} str - name tags throw separate symbol
          * @return {Object[]} listTag = list object add DOM elements tags plugin
          * @example
          * // returns [{tag1}, {tag2}]
          * pTag.addTagsFromString("tag1 tag2 tag1");
          */
-        addTagsFromString (str){
+        public addTagsFromString (str){
             let tagsList    =   str.split(/[\s;\t\,]/);
             let listTag     =   [];
 
@@ -174,7 +174,7 @@ var pTags   =   (function (){
          * create tag DOM element on select base input DOM element
          * @private
          */
-        createTagElement  () {
+        private createTagElement  () {
             let elem    =   document.querySelector(this.settings.selector);
 
             //check base element
@@ -205,7 +205,7 @@ var pTags   =   (function (){
          * @param {string} - name tag
          * @return {boolean} operation successful. False - name not exist in tag storage. True - remove all.
          */
-        remove(name){
+        public remove(name){
             let tag;
             for (tag of this.contaner){
                 if (name==tag.firstChild.textContent) break;
@@ -223,7 +223,7 @@ var pTags   =   (function (){
          * @param tag object
          * @return {boolean} operation successful. Tag - remove always. False - name not exist in tag storage. True - remove all.
          */
-        removeByObject(tag) {
+        private removeByObject(tag) {
             let tagName     =   tag.firstChild.textContent;
 
             let indexTag    =   this.returnIndexTag(tagName);
@@ -247,7 +247,7 @@ var pTags   =   (function (){
          * @param {string} name - name tag
          * @return {Number} index. -1 - not found. Number - index base 0.
          */
-        returnIndexTag (name){
+        public returnIndexTag (name){
             if (!name) return -1;
 
             let tags        =   this.originalInput.value;
@@ -260,7 +260,7 @@ var pTags   =   (function (){
          * focus cursor tags input element
          * @public
          */
-        focus () {
+        public focus () {
             this.handlerInput.focus();
         }
 
@@ -269,7 +269,7 @@ var pTags   =   (function (){
          * @private
          * @param {Object} tag
          */
-        editTag (tag) {
+        private editTag (tag) {
             let tagName = tag.firstChild.textContent;
             let tagWidth = tag.clientWidth;
 
@@ -291,7 +291,7 @@ var pTags   =   (function (){
          * @public
          * @return {string} - name tags through separate symbol
          */
-        get value (){
+        public get value (){
             return this.originalInput.value;
         }
 
@@ -300,7 +300,7 @@ var pTags   =   (function (){
          * @param {string} str - name tags through separate symbol
          * @public
          */
-        set value (str){
+        public set value (str){
             this.addTagsFromString(str);
         }
     }
