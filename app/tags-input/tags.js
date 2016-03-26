@@ -284,8 +284,6 @@ var pTags   =   (function (){
             this.removeByObject(tag);
         }
 
-
-
         /**
          * get value tags
          * @public

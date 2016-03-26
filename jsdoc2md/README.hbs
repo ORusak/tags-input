@@ -1,28 +1,26 @@
-# Описание
-Статус: в разработке.
+# Description
+Status: release.
 
-Vanilla JS плагин для добавления input элементу функций по вводу и обработке меток.
-Для функции автозавершения ввода названий меток используется сторонний
-плагин [JavaScript-autoComplete](https://github.com/Pixabay/JavaScript-autoComplete).
+Vanilla JS tags plugun. Add input HTML element opportunities edit tags.
+Plugin not include functionality autocomplite. Required use third-party plugin, e.g.
+[JavaScript-autoComplete](https://github.com/Pixabay/JavaScript-autoComplete).
 
-Плагин реализует возможности схожего элемента для управления метоками на stackoverflow.com.
+Demo: https://harebrown.herokuapp.com/demo-tags-input/index.html
 
-Демо: https://harebrown.herokuapp.com
+# Requirement
+## Plugin is implementation element edit tags to stackoverflow.com.
 
-# Возможности
-## Плагин Метки
-* Ввод новых меток, удаление
-* Редактирование меток по месту
-* Ручная инициализация через css селектор.
+# Features
+* Add, remove tags
+* Edit any tag inline
+* Separate char: whitespace, tab, comma, semicolon.
 
-# Требования для разработки
-## Плагин Метки
-* Добавить тесты
-* Обработчики на событий плагина onBeforeTagAdd/onTagAdd и onBeforeTagRemove/onTagRemove
-* Автоматическая инициализация элементов input по заданному признаку
-* Подумать как задавать каждому свои настройки
-* Реализовать иницициализацию и отключение плагина
-* Добавить настройку для ограничения свободного ввода значений меток. Выбор только присутсвующих в заданной коллекции.
+# Roadmap
+* Add test
+* Override hook for event plugin onBeforeTagAdd/onTagAdd и onBeforeTagRemove/onTagRemove
+* Auto init element on page by the sign
+* Init and destroy plugin
+* Option add value tags only from list
 
 # API Плагин Метки
 {{#module name="tags-input"}}
