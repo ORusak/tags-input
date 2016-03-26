@@ -2,9 +2,6 @@
  * Created by Rusak Oleg on 02.02.2016.
  */
 
-//todo: gulp задачу для минификации файлов
-//todo: добавить стили к автокомплиту
-
 'use strict';
 const fs              = require('fs');
 const runSequence     = require('run-sequence');
@@ -19,9 +16,11 @@ const stylus          = require('gulp-stylus');
 const jade            = require('gulp-jade');
 
 gulp.task('docs', function () {
-    return gulp.src('app/*.js')
+    return gulp.src(['app/**/*.js'])
         .pipe(concat('README.md'))
-        .pipe(gulpJsdoc2md({ template: fs.readFileSync('./jsdoc2md/readme.hbs', 'utf8') }))
+        .pipe(gulpJsdoc2md({
+            template: fs.readFileSync('./jsdoc2md/readme.hbs', 'utf8')
+        }))
         .on('error', function (err) {
             gutil.log(gutil.colors.red('jsdoc2md failed'), err.message)
         })
@@ -64,7 +63,6 @@ gulp.task('compress', function() {
         .pipe(gulp.dest("./"));
 });
 
-//todo: add stylus support
 gulp.task('stylus', function (callback) {
     return gulp.src('app/tags-input/*.styl')
         .pipe(stylus())

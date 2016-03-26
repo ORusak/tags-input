@@ -3,6 +3,11 @@
  * Tags Input
  */
 
+/**
+ * module tags input plugin
+ * @exports pTags
+ * @author Oleg Rusak
+ */
 var pTags   =   (function (){
     'use strict';
 
@@ -15,16 +20,18 @@ var pTags   =   (function (){
         handlerInputWidth: '15em'
     };
 
-    //todo: сохранять одинаковую последовательность тегов в инпут и визуализации
+    //todo: save sequence tags on input value vs view
     /**
-     * @exports tags-input
-     * @author Oleg Rusak
-     * */
+     * pTags
+     * @class
+     * @classdesc class implementation tags input plugin
+     * @throws Not support. Required support querySelector and addEventListener!
+     */
     class pTags {
         /**
          * tags input plugin
          * @constructor
-         * @param {object} options - plugin settings
+         * @param {object} options - plugin settings.</br>options.selector - css selector search for init element.</br>options.handlerInputWidth - width input edit tag text. default 15em
          * @throws Not support. Required support querySelector and addEventListener!
          */
         constructor (options){
@@ -45,7 +52,7 @@ var pTags   =   (function (){
          * init handlers event tags input element
          * @private
          */
-        private initHandler (){
+        initHandler (){
             // Listen write tags
             let ctx             =   this;
             let handlerInput    =   this.handlerInput;
@@ -119,7 +126,7 @@ var pTags   =   (function (){
          * @return {Object} tag - object add new DOM element tag
          * @return {null} tag - name is empty or not unique
          */
-        public addTag (name){
+        addTag (name){
             if (name==='' || this.returnIndexTag(name)!=-1){
                 return null;
             }
@@ -157,7 +164,7 @@ var pTags   =   (function (){
          * // returns [{tag1}, {tag2}]
          * pTag.addTagsFromString("tag1 tag2 tag1");
          */
-        public addTagsFromString (str){
+        addTagsFromString (str){
             let tagsList    =   str.split(/[\s;\t\,]/);
             let listTag     =   [];
 
@@ -174,7 +181,7 @@ var pTags   =   (function (){
          * create tag DOM element on select base input DOM element
          * @private
          */
-        private createTagElement  () {
+        createTagElement  () {
             let elem    =   document.querySelector(this.settings.selector);
 
             //check base element
@@ -205,7 +212,7 @@ var pTags   =   (function (){
          * @param {string} - name tag
          * @return {boolean} operation successful. False - name not exist in tag storage. True - remove all.
          */
-        public remove(name){
+        remove(name){
             let tag;
             for (tag of this.contaner){
                 if (name==tag.firstChild.textContent) break;
@@ -223,7 +230,7 @@ var pTags   =   (function (){
          * @param tag object
          * @return {boolean} operation successful. Tag - remove always. False - name not exist in tag storage. True - remove all.
          */
-        private removeByObject(tag) {
+        removeByObject(tag) {
             let tagName     =   tag.firstChild.textContent;
 
             let indexTag    =   this.returnIndexTag(tagName);
@@ -247,7 +254,7 @@ var pTags   =   (function (){
          * @param {string} name - name tag
          * @return {Number} index. -1 - not found. Number - index base 0.
          */
-        public returnIndexTag (name){
+        returnIndexTag (name){
             if (!name) return -1;
 
             let tags        =   this.originalInput.value;
@@ -260,7 +267,7 @@ var pTags   =   (function (){
          * focus cursor tags input element
          * @public
          */
-        public focus () {
+        focus () {
             this.handlerInput.focus();
         }
 
@@ -269,7 +276,7 @@ var pTags   =   (function (){
          * @private
          * @param {Object} tag
          */
-        private editTag (tag) {
+        editTag (tag) {
             let tagName = tag.firstChild.textContent;
             let tagWidth = tag.clientWidth;
 
@@ -289,7 +296,7 @@ var pTags   =   (function (){
          * @public
          * @return {string} - name tags through separate symbol
          */
-        public get value (){
+        get value (){
             return this.originalInput.value;
         }
 
@@ -298,7 +305,7 @@ var pTags   =   (function (){
          * @param {string} str - name tags through separate symbol
          * @public
          */
-        public set value (str){
+        set value (str){
             this.addTagsFromString(str);
         }
     }
